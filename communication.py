@@ -4,7 +4,6 @@ import time
 
 class DroneConnection:
     def __init__(self):
-        # Adres do którego ArduPilot będzie wysyłał dane o położeniu
         self.address = configuration.MAVLINK_CONNECTION
         self.master = None
         self.connect()
@@ -17,14 +16,13 @@ class DroneConnection:
             self.master.wait_heartbeat()
             print(f"Połączono")
             
-            # Konfiguracja drona po połączeniu
             self.setup_precision_landing()
             
         except Exception as e:
-            print(f"--- ERROR: Nie udało się połączyć: {e} ---")
+            print(f"--- BŁĄD: Nie udało się połączyć: {e} ---")
 
     def _set_param(self, name, value):
-        """Wysyła pojedynczy parametr do drona. Używane do konfiguracji PLND."""
+        """Wysyła pojedynczy parametr do drona, używane do konfiguracji PLND"""
         if not self.master: return
         self.master.mav.param_set_send(
             self.master.target_system, 
