@@ -9,21 +9,21 @@ from GeometryUtils import GeometryCalculator
 def main():
     print("--- START SYSTEMU ARUCO DRONE ---\n")
 
-    # 1. Próba połączenia z dronem.
+    # Próba połączenia z dronem
     try:
         comm = DroneConnection()
     except Exception as e:
         print(f"\nBŁĄD KRYTYCZNY: {e}")
         sys.exit(1)
 
-    # 2. Ustawienie kamery
+    # Ustawienie kamery
     look_at_ground(comm.master)
 
-    # 3. Interpretacja obrazu i obliczenia geometryczne
+    # Interpretacja obrazu i obliczenie pozycji
     aruco_detector = ArucoDetector()
     geometry = GeometryCalculator()
 
-    # 4. Łaczenie z kamerą i sprawdzenie czy działa
+    # Łaczenie z kamerą i sprawdzenie czy działa
     cap = cv2.VideoCapture(Config.VIDEO_SOURCE)
     if not cap.isOpened():
         print(f"\nBŁĄD: Nie można otworzyć strumienia wideo z ustawionego źródła ({Config.VIDEO_SOURCE}).")
