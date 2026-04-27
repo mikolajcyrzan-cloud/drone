@@ -15,7 +15,7 @@ class ArucoDetector:
         self.detector = aruco.ArucoDetector(self.aruco_dict, self.parameters)
 
     def detect(self, frame):
-        """Wykrywa marker, zwraca jego pozycję w pikselach"""
+        """Wykrywa marker i zwraca jego pozycję w pikselach"""
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         corners, ids, rejected = self.detector.detectMarkers(gray)
 
@@ -25,7 +25,7 @@ class ArucoDetector:
         if len(rejected) > 0:
             cv2.aruco.drawDetectedMarkers(frame, rejected, borderColor=(0, 0, 255))
 
-        # Ekstrakcja pozycji
+        # Estymacja pozycji markera
         if ids is not None and configuration.MARKER_ID in ids:
             id_idx = np.where(ids == configuration.MARKER_ID)[0][0]
             c = corners[id_idx][0]
