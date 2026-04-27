@@ -9,7 +9,7 @@
 
 
 # --- POŁĄCZENIE --- #
-MAVLINK_CONNECTION = 'udp:127.0.0.1:14550' # Adres do którego ArduPilot będzie wysyłał dane o położeniu drona.
+MAVLINK_CONNECTION = 'udp:127.0.0.1:14550' # Adres do którego ArduPilot będzie wysyłał dane o położeniu drona
 VIDEO_SOURCE = 2
 
 # --- WYBÓR MARKERA ARUCO --- #
