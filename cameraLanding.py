@@ -3,7 +3,7 @@ from pymavlink import mavutil
 def look_at_ground(master):
     """Kieruje kamere w dół przy właczeniu skryptu"""
     if master is None:
-        print("Błąd: Brak aktywnego połączenia z dronem.")
+        print("BŁĄD - Brak aktywnego połączenia z dronem.")
         return
     
     master.mav.command_long_send(
@@ -11,7 +11,7 @@ def look_at_ground(master):
         master.target_component,
         mavutil.mavlink.MAV_CMD_DO_SET_SERVO,
         0,                      
-        10,                     # Parametr 1: Numer serwomechanizmu
-        1300,                   # Parametr 2: Wartość sygnału PWM
+        10,                     # Numer serwomechanizmu
+        1300,                   # Wartość sygnału PWM
         0, 0, 0, 0, 0           
     )
